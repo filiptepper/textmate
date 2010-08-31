@@ -19,7 +19,7 @@ class TextmateInstaller < Thor
 
       results = case location[:scm]
                 when :svn
-                  %x[svn list #{e_sh location[:url]}].map {|x| x.split(".")[0]}.select {|x| x =~ search_term}.join("\n")
+                  %W[svn list #{e_sh location[:url]}].map {|x| x.split(".")[0]}.select {|x| x =~ search_term}.join("\n")
                 when :git
                   'git remotes not implemented yet'
                 when :github
